@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {connect} from 'react-redux'
+import {sendInitialInfo} from '../../redux/raceReducer'
 
 class Landing extends Component{
     constructor(){
@@ -18,7 +20,7 @@ class Landing extends Component{
     }
 
     loginUser = () => {
-        axios.post('/loginUser', {username: this.state.username, password: this.state.password})
+        axios.post('/api/loginUser', {username: this.state.username, password: this.state.password})
         .then(res => {
             console.log(res.data)
             this.props.history.push('/dashboard')
@@ -27,9 +29,10 @@ class Landing extends Component{
     }
 
     loginHost = () => {
-        axios.post('/loginHost', {username: this.state.username, password: this.state.password})
+        axios.post('/api/loginHost', {username: this.state.username, password: this.state.password})
         .then(res => {
             console.log(res.data)
+            this.props.sendInitialInfo(res.data.id, res.data.username, res.data.email)
             this.props.history.push('/host/hostRaces')
         })
         .catch(err => console.log(err))
@@ -69,4 +72,10 @@ class Landing extends Component{
     }
 }
 
-export default Landing
+function mapStateToProps(state){
+    return{
+        raceReducer: state.raceReducer
+    }
+}
+
+export default connect(mapStateToProps, {sendInitialInfo})(Landing)

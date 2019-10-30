@@ -19,7 +19,7 @@ class Register extends Component{
     }
 
     resgisterUser = () => {
-        axios.post('/registerUser', {username: this.state.username, email: this.state.email, password:this.state.password})
+        axios.post('/api/registerUser', {username: this.state.username, email: this.state.email, password:this.state.password})
         .then(res => {
             console.log(res.data)
             this.props.history.push('/dashboard')
@@ -28,7 +28,7 @@ class Register extends Component{
     }
 
     registerHost = () => {
-        axios.post('/registerHost', {username: this.state.username, email: this.state.email, password:this.state.password})
+        axios.post('/api/registerHost', {username: this.state.username, email: this.state.email, password:this.state.password})
         .then(res => {
             console.log(res.data)
             this.props.history.push('/host/hostRaces')

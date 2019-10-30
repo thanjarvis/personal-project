@@ -1,16 +1,18 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {sendForm1} from '../../../redux/raceReducer'
 
 class Form1 extends Component{
     constructor(){
         super()
         this.state = {
+            raceImg: '',
             raceName: '',
             raceDate: '',
             raceLocation: '',
             raceDistance: '',
             raceElevationChange: '',
-            raceHostEmail: '',
             raceHostPhone: '',
             raceComments: '',
             hostId: ''
@@ -28,6 +30,12 @@ class Form1 extends Component{
         return(
             <div>
                 <div>
+                    <input
+                        name='raceImg'
+                        value={this.state.raceImg}
+                        placeholder='Paste img URL here'
+                        onChange={(e) => this.handleChange(e)}             
+                    />
                     <input
                         name='raceName'
                         value={this.state.raceName}
@@ -58,12 +66,6 @@ class Form1 extends Component{
                         placeholder='Elevation Change'
                         onChange={(e) => this.handleChange(e)}             
                     />
-                    <input
-                        name='raceHostEmail'
-                        value={this.state.raceHostEmail}
-                        placeholder='Host Email'
-                        onChange={(e) => this.handleChange(e)}             
-                    />
                    <input
                         name='raceHostPhone'
                         value={this.state.raceHostPhone}
@@ -79,11 +81,28 @@ class Form1 extends Component{
                 </div>
                 <div>
                     <Link to='/host/hostRaces'><button>Cancel</button></Link>
-                    <Link to='/host/form2'><button>Step 2</button></Link>
+                    <Link to='/host/form2'><button
+                        onClick={() => this.props.sendForm1(
+                            this.state.raceImg,
+                            this.state.raceName,
+                            this.state.raceDate,
+                            this.state.raceLocation,
+                            this.state.raceDistance,
+                            this.state.raceElevationChange,
+                            this.state.raceHostPhone,
+                            this.state.raceComments,
+                        )}
+                    >Step 2</button></Link>
                 </div>
             </div>
         )
     }
 }
 
-export default Form1
+function mapStateToProps(state){
+    return{
+        raceReducer: state.raceReducer
+    }
+}
+
+export default connect(mapStateToProps, {sendForm1})(Form1)

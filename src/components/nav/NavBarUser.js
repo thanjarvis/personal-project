@@ -10,7 +10,7 @@ class NavBarUser extends Component{
     }
 
     logout = () => {
-        axios.post('/logout')
+        axios.post('/api/logout')
     }
 
     render(){

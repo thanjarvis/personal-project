@@ -1,13 +1,13 @@
 create table starting_line_users(
     user_id serial primary key,
-    username varchar(20),
+    username varchar(50),
     email varchar(50),
     password varchar(300)
 );
 
 create table starting_line_hosts(
     host_id serial primary key,
-    username varchar(20),
+    username varchar(50),
     email varchar(50),
     password varchar(300)
 );
@@ -24,7 +24,8 @@ create table starting_line_races(
     comments varchar(700),
     image text,
     map text,
-    host_id integer references starting_line_hosts(host_id)
+    host_id integer references starting_line_hosts(host_id),
+    host_name varchar(50)
     
 
 );

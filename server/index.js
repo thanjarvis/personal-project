@@ -20,13 +20,17 @@ app.use(session({
 }))
 
 //user endpoints
-app.post('/registerUser', userCtrl.registerUser)
-app.post('/loginUser', userCtrl.loginUser)
+app.post('/api/registerUser', userCtrl.registerUser)
+app.post('/api/loginUser', userCtrl.loginUser)
 
 
 //host endpoints
-app.post('/registerHost', hostCtrl.registerHost)
-app.post('/loginHost', hostCtrl.loginHost)
+app.post('/api/registerHost', hostCtrl.registerHost)
+app.post('/api/loginHost', hostCtrl.loginHost)
+app.post('/api/newRace', hostCtrl.makeNewRace)
+app.get('/api/getAllHostRaces/:id', hostCtrl.getAllHostRaces)
+app.delete('/api/deletSpecificRace/:id', hostCtrl.deleteSpecificRace)
+app.put('/api/editRace', hostCtrl.editRace)
 
 
 

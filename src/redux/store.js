@@ -9,5 +9,3 @@ const rootReducer = combineReducers({
 
 
 export default createStore(rootReducer, applyMiddleware(logger, promiseMiddleware))
-
-// you are heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeere you just finished the redux store and need to do the reducers and plan exactly what you will need redux for
