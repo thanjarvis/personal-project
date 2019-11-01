@@ -8,10 +8,6 @@ const massive = require('massive')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 app.use(express.json())
 
-massive(CONNECTION_STRING).then(db => {
-    app.set('db', db)
-    console.log('db connected')
-})
 
 app.use(session({
     resave:false,
@@ -19,9 +15,19 @@ app.use(session({
     secret: SESSION_SECRET
 }))
 
+
+massive(CONNECTION_STRING).then(db => {
+    app.set('db', db)
+    console.log('db connected')
+})
+
 //user endpoints
 app.post('/api/registerUser', userCtrl.registerUser)
 app.post('/api/loginUser', userCtrl.loginUser)
+app.get('/api/getAllRaces', userCtrl.getAllRaces)
+app.get('/api/getUserRaces/:id', userCtrl.getUserRaces)
+app.get('/api/getSpecificRace/:id', userCtrl.getSpecificRace)
+app.get('/api/getSearchedRaces/:search', userCtrl.getSearchedRaces)
 
 
 //host endpoints

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {sendForm1} from '../../../redux/raceReducer'
+import {sendForm1, clearState} from '../../../redux/raceReducer'
 
 class Form1 extends Component{
     constructor(){
@@ -15,8 +15,26 @@ class Form1 extends Component{
             raceElevationChange: '',
             raceHostPhone: '',
             raceComments: '',
-            hostId: ''
-            
+            hostId: '',
+            race: {}       
+        }
+    }
+    componentDidMount = () => {
+
+        if(this.props.raceReducer.raceId !== ''){
+            const {raceImg, raceName, raceDate, raceLocation, raceDistance,     raceElevationChange, raceHostPhone, raceComments, hostId} =     this.props.raceReducer
+            this.setState({
+                raceImg,
+                raceName,
+                raceDate,
+                raceLocation,
+                raceDistance,
+                raceElevationChange,
+                raceHostPhone,
+                raceComments,
+                hostId,
+
+            })
         }
     }
 
@@ -27,6 +45,7 @@ class Form1 extends Component{
     }
 
     render(){
+        // console.log(this.state.race)
         return(
             <div>
                 <div>
@@ -105,4 +124,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {sendForm1})(Form1)
+export default connect(mapStateToProps, {sendForm1, clearState})(Form1)

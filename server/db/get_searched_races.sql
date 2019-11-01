@@ -1,0 +1,1 @@
+select * from starting_line_races where comments like '%' ||$1|| '%'

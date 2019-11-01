@@ -1,12 +1,19 @@
-create table starting_line_users(
-    user_id serial primary key,
+create table starting_line_hosts(
+    host_id serial primary key,
     username varchar(50),
     email varchar(50),
     password varchar(300)
 );
 
-create table starting_line_hosts(
-    host_id serial primary key,
+create table starting_line_registrations(
+    registration_id serial primary key,
+    user_id integer references starting_line_users(user_id),
+    race_id integer references starting_line_races(race_id)
+);
+
+
+create table starting_line_users(
+    user_id serial primary key,
     username varchar(50),
     email varchar(50),
     password varchar(300)
@@ -26,12 +33,4 @@ create table starting_line_races(
     map text,
     host_id integer references starting_line_hosts(host_id),
     host_name varchar(50)
-    
-
-);
-
-create table starting_line_registrations(
-    registration_id serial primary key,
-    user_id integer references starting_line_users(user_id),
-    race_id integer references starting_line_races(race_id)
 );

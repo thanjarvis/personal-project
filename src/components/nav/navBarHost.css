@@ -1,0 +1,103 @@
+#main-container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+nav{
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-right: 40px;
+    padding-left: 25vw;
+    box-sizing: border-box;
+    background-color: grey;
+
+}
+
+.button{
+    border: none;
+    color: white;
+    background-color: black;
+    font-family: 'fugaz one';
+    font-size: 2vh;
+    margin: 1vw;
+    padding: 2px;
+    border-radius: 2vh
+}
+.button:hover{
+    box-shadow: 3px 3px 5px 0px white
+}
+.text{
+    font-family: 'fugaz one';
+    font-size: 4vh;
+}
+
+.dropdown{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    height: 40vh;
+    position: fixed;
+    right: 0px;
+    top: 50px;
+    padding: 15px;
+    background-color: grey;
+    border-bottom-left-radius: 2vh
+
+}
+
+.hide-animation{
+    animation-name: hide;
+    animation-duration: .5s;
+    animation-iteration-count: 1s;
+    animation-fill-mode: forwards
+}
+.show-animation{
+    animation-name: show;
+    animation-duration: .5s;
+    animation-iteration-count: 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes hide{
+    0%{
+        height: 100px
+    }
+    100%{
+        height:0px
+    }
+}
+@keyframes show{
+    0%{
+        height: 0px
+    }
+    100%{
+        height:100px
+    }
+}
+
+@media(min-width: 900px){
+    #hamburger-icon, .dropdown{
+        display: none
+    }
+    .button{
+        font-size: 2.5vh
+    }
+    .text{
+        font-size: 5vh
+    }
+
+}
+@media(max-width: 900px){
+    #button-container{
+        display: none
+    }
+}

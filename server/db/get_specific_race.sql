@@ -1,0 +1,1 @@
+select * from starting_line_races where race_id = $1

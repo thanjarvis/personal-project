@@ -62,13 +62,13 @@ module.exports = {
     deleteSpecificRace: async (req, res) => {
         const {id} = req.params
         const db = req.app.get('db')
-        console.log('hit delete', req.params)
+        // console.log('hit delete', req.params)
         
         let newRaces = await db.delete_race(id)
         res.status(200).send(newRaces)
     },
     editRace: async (req, res) => {
-        console.log('hit edit')
+        // console.log('hit edit')
         const {raceImg, raceName, raceDate, raceLocation, raceDistance, raceElevationChange, raceHostPhone, raceComments, raceMap, id} = req.body
 
         const db = req.app.get('db')

@@ -1,0 +1,28 @@
+#main-div{
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+    align-items: center;
+    height: 100vh;
+    background-size: 100%;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.input{
+    margin: 20px;
+    background-color: black;
+    color:white;
+    border: black;
+    border-radius: 15px;
+    padding: 7px;
+    font-family: 'fugaz one';
+}
+
+
+
+

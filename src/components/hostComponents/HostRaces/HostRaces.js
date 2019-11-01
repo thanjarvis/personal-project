@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {getRaceForEditing, clearState} from '../../../redux/raceReducer'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 class HostRaces extends Component{
     constructor(props){
@@ -21,13 +23,8 @@ class HostRaces extends Component{
         await axios.get(`/api/getAllHostRaces/${id}`)
         .then(res => proxState = res.data)
 
-        if (prevState !== proxState){
-            this.setState({
-                hostRaces: proxState
-            })
-            // console.log('we want to rerender')
-            // console.log('prevstate', prevState)
-            // console.log('proxstate', proxState)
+        if (prevState.length !== proxState.length){
+            this.getAllRaces()
         }
     }
 
@@ -40,36 +37,36 @@ class HostRaces extends Component{
         .catch(err => console.log(err))
     }
 
-    deleteRace= (raceId) => {
-        console.log(raceId)
-        axios.delete(`/api/deletSpecificRace/${raceId}`)    
+    deleteRace= async (raceId) => {
+        // console.log(raceId)
+        await axios.delete(`/api/deletSpecificRace/${raceId}`)
+        this.getAllRaces()
     }
 
-    // each object on the all races array in state contain this
-    //     comments: "test"
-    // date: "test"
-    // distance: "test"
-    // elevation_change: "test"
-    // host_email: "test"
-    // host_id: 1
-    // host_name: "test"
-    // host_phone: "test"
-    // image: "test"
-    // location: "test"
-    // map: "test"
-    // name: "test race 1"
-    // race_id: 1
-
     render(){
-        // console.log(proxState)
+        console.log(this.state)
         return(
             <div>
                 {this.state.hostRaces.map(element => {
+                    console.log(element)
                     return(
                         <div key={element.race_id}>
                             <div>
-                                <img src={element.image} height='100px' width='150px'/>
-                                <button>Edit</button>
+                                <img src={element.image} alt='' height='100px' width='150px'/>
+                                <Link to='/host/form1'><button
+                                    onClick={() => this.props.getRaceForEditing(
+                                        element.image,
+                                        element.name,
+                                        element.date,
+                                        element.location,
+                                        element.distance,
+                                        element.elevation_change,
+                                        element.host_phone,
+                                        element.comments,
+                                        element.map,
+                                        element.race_id
+                                    )}
+                                >Edit</button></Link>
                                 <button
                                     onClick={() => this.deleteRace(element.race_id)}
                                 >Delete</button>
@@ -98,4 +95,4 @@ const mapStateToProps = (reduxState) => {
         hostName: hostName
     }
 }
-export default connect(mapStateToProps)(HostRaces)
+export default connect(mapStateToProps, {getRaceForEditing, clearState})(HostRaces)

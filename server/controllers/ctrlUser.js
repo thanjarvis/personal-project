@@ -51,6 +51,37 @@ module.exports = {
     logout: async (req, res) => {
         req.session.destroy
         res.sendStatus(200)
+    },
+    getAllRaces: async(req, res) => {
+        const db = req.app.get('db')
+        let allRaces = await db.get_all_races()
+
+        res.status(200).send(allRaces)
+    },
+    getUserRaces: async (req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+
+        let userRaces = await db.get_user_races(id)
+        res.status(200).send(userRaces)
+    },
+    getSpecificRace: async (req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+
+        let selectedRace = await db.get_specific_race(id)
+        res.status(200).send(selectedRace)
+    },
+    getSearchedRaces: async (req, res) => {
+        const db = req.app.get('db')
+        const {search} = req.params
+        // console.log('hit search')
+        // console.log(search)
+        let searchedRaces = await db.get_searched_races(search)
+        // console.log('hit db query')
+        res.status(200).send(searchedRaces)
+        // console.log(searchedRaces)
     }
+
     
 }

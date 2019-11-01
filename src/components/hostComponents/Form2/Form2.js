@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {sendForm2} from '../../../redux/raceReducer'
+import {sendForm2, editRace, clearState} from '../../../redux/raceReducer'
 
 class Form2 extends Component{
     constructor(){
@@ -23,6 +23,13 @@ class Form2 extends Component{
         this.props.history.push('/host/hostRaces')
     }
 
+    editRace = async () => {
+        await this.props.editRace(this.state.raceMap)
+        this.props.history.push('/host/hostRaces')
+    }
+
+    
+
     render(){
         return(
             <div>
@@ -33,11 +40,13 @@ class Form2 extends Component{
                     onChange={(e) => this.handleChange(e)}
                 />
                 <Link to='/host/hostRaces'><button
-                    // onClick={() => this.props.sendForm2(
-                    //     this.state.raceMap
-                    // )}
                     onClick={this.saveRace}
                 >Save</button></Link>
+
+                <Link to='/host/hostRace'><button
+                    onClick={this.editRace}
+                >saveEditedTest</button></Link>
+
                 <Link to='/host/hostRaces'><button>Cancel</button></Link>
             </div>
         )
@@ -50,4 +59,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,{sendForm2})(Form2)
+export default connect(mapStateToProps,{sendForm2, editRace, clearState})(Form2)
