@@ -29,7 +29,7 @@ class NavBarUser extends Component{
             <div id='main-container'>
                 <nav>
                     <h1 className='text'>{this.props.username}</h1>
-                    <i className='fas fa-bars fa-2x' id='hamburger-icon' onClick={this.changeState}/>
+                    <i className='fas fa-bars fa-3x' id='hamburger-icon' onClick={this.changeState}/>
                     <div id='button-container'>
                         <Link to='/dashboard'><button className='button'>Races</button></Link>
                         <Link to='/userRaces'><button className='button'>My Races</button></Link>

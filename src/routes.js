@@ -8,6 +8,7 @@ import UserRaces from './components/userComponents/UserRaces/UserRaces'
 import Form1 from './components/hostComponents/Form1/Form1'
 import Form2 from './components/hostComponents/Form2/Form2'
 import HostRaces from './components/hostComponents/HostRaces/HostRaces'
+import Pay from './components/pay/Pay'
 
 export default (
     <Switch>
@@ -19,5 +20,6 @@ export default (
         <Route path='/host/form1' component={Form1}/>
         <Route path='/host/form2' component={Form2}/>
         <Route path='/host/hostRaces' component={HostRaces}/>
+        <Route path='/pay' component={Pay}/>
     </Switch>
 )

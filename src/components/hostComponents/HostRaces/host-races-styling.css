@@ -1,0 +1,21 @@
+#host-races-img-div{
+    display: flex;
+    width: 30vw;
+    align-items: center;
+}
+#host-races-edit-button{
+    width: 10vw
+}
+#host-races-delete-button{
+    width: 13vw;
+}
+#host-races-img{
+    max-width: 100%;
+    height: auto;
+}
+
+#host-races-main-div{
+    background-image: url('https://images.unsplash.com/photo-1510078344547-e481316148ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

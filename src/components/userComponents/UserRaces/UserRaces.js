@@ -37,22 +37,23 @@ class UserRaces extends Component{
     render(){
         console.log(this.state)
         return(
-            <div>
-                <div>
+            <div className='body-div'>
+                <div className='race-container-div'>
                     {this.state.userRaces.map(e => {
                         return(
-                            <div key={e.race_id}>
-                                <div>
-                                    <img src={e.image} height='100px' alt='' width='150px'/>
+                            <div className='race-div' key={e.race_id}>
+                                <div className='img-div'>
+                                    <img className='race-img' src={e.image}/>
                                     <button
+                                        className='view-race-button'
                                         onClick={() => this.getRace(e.race_id)}
                                     >View Race</button>
                                 </div>
-                                <div>
-                                    <h4>Name: {e.name}</h4>
-                                    <h4>When: {e.date}</h4>
-                                    <h4>Where: {e.location}</h4>
-                                    <h4>Distance: {e.distance}</h4>
+                                <div className='race-info-div'>
+                                    <h4 className='race-text'>Name: {e.name}</h4>
+                                    <h4 className='race-text'>When: {e.date}</h4>
+                                    <h4 className='race-text'>Where: {e.location}</h4>
+                                    <h4 className='race-text'>Distance: {e.distance}</h4>
                                 </div>
                             </div>
                         )

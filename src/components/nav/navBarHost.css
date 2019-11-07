@@ -18,6 +18,7 @@ nav{
     padding-left: 25vw;
     box-sizing: border-box;
     background-color: grey;
+    z-index: 3;
 
 }
 
@@ -48,10 +49,11 @@ nav{
     height: 40vh;
     position: fixed;
     right: 0px;
-    top: 50px;
+    top: 10vh;
     padding: 15px;
     background-color: grey;
-    border-bottom-left-radius: 2vh
+    border-bottom-left-radius: 2vh;
+    z-index: 3;
 
 }
 

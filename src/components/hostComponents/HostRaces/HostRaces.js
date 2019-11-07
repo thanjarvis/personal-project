@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {getRaceForEditing, clearState} from '../../../redux/raceReducer'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import './host-races-styling.css'
 
 class HostRaces extends Component{
     constructor(props){
@@ -46,14 +47,16 @@ class HostRaces extends Component{
     render(){
         console.log(this.state)
         return(
-            <div>
+            <div className='body-div race-container-div' id='host-races-main-div'>
                 {this.state.hostRaces.map(element => {
                     console.log(element)
                     return(
-                        <div key={element.race_id}>
-                            <div>
-                                <img src={element.image} alt='' height='100px' width='150px'/>
+                        <div className='race-div' key={element.race_id}>
+                            <div className='img-div' id='host-races-img-div'>
+                                <img className='race=img' id='host-races-img' src={element.image}/>
                                 <Link to='/host/form1'><button
+                                    className='view-race-button'
+                                    id='host-races-edit-button'
                                     onClick={() => this.props.getRaceForEditing(
                                         element.image,
                                         element.name,
@@ -68,14 +71,16 @@ class HostRaces extends Component{
                                     )}
                                 >Edit</button></Link>
                                 <button
+                                    id='host-races-delete-button'
+                                    className='view-race-button'
                                     onClick={() => this.deleteRace(element.race_id)}
                                 >Delete</button>
                             </div>
-                            <div>
-                                <h4>Name: {element.name}</h4>
-                                <h4>When: {element.date}</h4>
-                                <h4>Where: {element.location}</h4>
-                                <h4>Distance: {element.distance}</h4>
+                            <div className='race-info-div'>
+                                <h4 className='race-text'>Name: {element.name}</h4>
+                                <h4 className='race-text'>When: {element.date}</h4>
+                                <h4 className='race-text'>Where: {element.location}</h4>
+                                <h4 className='race-text'>Distance: {element.distance}</h4>
                             </div>
 
                         </div>

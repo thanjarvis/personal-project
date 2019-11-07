@@ -18,6 +18,7 @@ nav{
     padding-left: 25vw;
     box-sizing: border-box;
     background-color: grey;
+    /* margin-top: -50px */
 
 }
 
@@ -39,7 +40,7 @@ nav{
     font-size: 4vh;
 }
 
-.dropdown{
+/* .dropdown{
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -48,12 +49,12 @@ nav{
     height: 40vh;
     position: fixed;
     right: 0px;
-    top: 50px;
+    top: 100px;
     padding: 15px;
     background-color: grey;
     border-bottom-left-radius: 2vh
 
-}
+} */
 
 .hide-animation{
     animation-name: hide;
@@ -99,5 +100,8 @@ nav{
 @media(max-width: 900px){
     #button-container{
         display: none
+    }
+    .dropdown{
+
     }
 }

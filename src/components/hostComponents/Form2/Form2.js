@@ -32,7 +32,7 @@ class Form2 extends Component{
 
     render(){
         return(
-            <div>
+            <div className='body-div'>
                 <input
                     name='raceMap'
                     value={this.state.raceMap}

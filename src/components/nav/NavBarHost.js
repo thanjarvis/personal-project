@@ -33,7 +33,7 @@ class NavBarHost extends Component{
             <div id='main-container'>
                 <nav>
                     <h1 className='text'>{this.props.hostName}</h1>
-                    <i className='fas fa-bars fa-2x' id='hamburger-icon' onClick={this.changeState}/>  
+                    <i className='fas fa-bars fa-3x' id='hamburger-icon' onClick={this.changeState}/>  
                     <div id='button-container'>
                         <Link to='/host/hostRaces'><button  className='button'>My Races</button></Link>
                         <Link to='/host/form1'><button className='button'>Make  New Race</button></ Link>

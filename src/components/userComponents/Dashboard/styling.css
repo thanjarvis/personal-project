@@ -1,0 +1,57 @@
+.body-div{
+    position: fixed;
+    top:12vh;
+    width: 100%;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    background-image: url('https://images.unsplash.com/photo-1518171307081-9b28b55b6804?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2155&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 50px;
+    box-sizing: border-box;
+}
+.race-container-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+
+}
+.race-div{
+    display: flex;
+    margin: 20px;
+    width: 60vw;
+    padding: 10px;
+    justify-content: space-between;
+    border-style: double;
+    border-color: black
+}
+.img-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around
+}
+
+.race-text{
+    color: white;
+    font-family: 'fugaz one';
+    font-size: 1.75vh;
+
+}
+
+.view-race-button{
+    border:none;
+    color: white;
+    background: black;
+    font-family: 'fugaz one';
+    font-size: 1.5vh;
+    padding: 2px;
+    border-radius: 2vh
+}
+.race-img{
+    max-width: 100%;
+    height: auto;
+    alt: '';
+
+}

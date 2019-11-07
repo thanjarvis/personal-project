@@ -6,6 +6,7 @@ const app = express()
 const session = require('express-session')
 const massive = require('massive')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
+
 app.use(express.json())
 
 
@@ -28,7 +29,8 @@ app.get('/api/getAllRaces', userCtrl.getAllRaces)
 app.get('/api/getUserRaces/:id', userCtrl.getUserRaces)
 app.get('/api/getSpecificRace/:id', userCtrl.getSpecificRace)
 app.get('/api/getSearchedRaces/:search', userCtrl.getSearchedRaces)
-
+app.post('/api/pay', userCtrl.pay)
+app.post('/api/verifyRegistration', userCtrl.verifyRegistration)
 
 //host endpoints
 app.post('/api/registerHost', hostCtrl.registerHost)

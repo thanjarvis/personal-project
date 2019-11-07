@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
 
 module.exports = {
     registerUser: async (req, res) => {
@@ -75,13 +76,41 @@ module.exports = {
     getSearchedRaces: async (req, res) => {
         const db = req.app.get('db')
         const {search} = req.params
-        // console.log('hit search')
-        // console.log(search)
         let searchedRaces = await db.get_searched_races(search)
-        // console.log('hit db query')
         res.status(200).send(searchedRaces)
-        // console.log(searchedRaces)
+    },
+    pay: async (req, res) => {
+        const db = req.app.get('db')
+        const {token:{id}, amount, raceId, userId} = req.body
+        // let foundRace = await db.find_race_registration(userId, raceId)
+    
+        stripe.charges.create(
+            {
+                amount: amount,
+                currency: 'usd',
+                source: id,
+                description: 'Race Registration Fee'
+            },
+            (err, charge) => {
+                if(err){
+                    console.log(err)
+                    res.status(500).send(err)
+                }else{
+                    console.log('payment succesful')
+                    db.register_for_race(userId, raceId)
+                    return res.status(200).send(charge)  
+                }
+            }
+        )
+    },
+    verifyRegistration: async (req, res) => {
+        const db = req.app.get('db')
+        const {raceId, userId} = req.body
+        let foundRegistration = await db.find_race_registration(userId, raceId)
+        res.status(200).send(foundRegistration)
     }
+    
+    
 
     
 }

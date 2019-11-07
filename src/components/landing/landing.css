@@ -5,6 +5,7 @@
     align-items: center;
     height: 100vh;
     background-size: 100%;
+    padding-top: 20vh;
 }
 
 .input-container{
@@ -23,6 +24,18 @@
     font-family: 'fugaz one';
 }
 
+@media(max-width: 900px){
+    #main-div{
+        padding-top: 20vh;
+    }
+    .button-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .input{
+        width: 60vw
+    }
+}
 
 
 

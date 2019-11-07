@@ -47,7 +47,7 @@ class Form1 extends Component{
     render(){
         // console.log(this.state.race)
         return(
-            <div>
+            <div className='body-div'>
                 <div>
                     <input
                         name='raceImg'
