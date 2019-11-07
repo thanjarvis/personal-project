@@ -18,4 +18,11 @@
     background-image: url('https://images.unsplash.com/photo-1510078344547-e481316148ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
     background-repeat: no-repeat;
     background-size: cover;
+    padding-left: 4vw
+}
+
+@media(min-width: 900px){
+    #race-input-container{
+        margin-bottom: 60px;
+    }
 }

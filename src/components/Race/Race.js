@@ -37,7 +37,7 @@ class Race extends Component{
                         >Register</button>
                 </div>
                 <div className='race-info-button-comments-div'>
-                    <div className='race-info-div'>
+                    <div className='big-race-info-div'>
                         <p className='race-info'>Name: {this.props.userReducer.race[0].name}</p>
                         <p className='race-info'>Date: {this.props.userReducer.race[0].date}</p>
                         <p className='race-info'>Distance: {this.props.userReducer.race[0].distance}</p>

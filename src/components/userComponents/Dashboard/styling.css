@@ -47,11 +47,30 @@
     font-family: 'fugaz one';
     font-size: 1.5vh;
     padding: 2px;
-    border-radius: 2vh
+    border-radius: 2vh;
+    margin-top: 10px
 }
 .race-img{
     max-width: 100%;
     height: auto;
     alt: '';
 
+}
+
+@media(min-width: 900px){
+    .body-div{
+        /* background-position: bottom; */
+        background-position-y: -150vh
+    }
+
+    .race-div{
+        width: 25vw
+    }
+
+    .race-container-div{
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        padding-left: 6vw
+    }
 }

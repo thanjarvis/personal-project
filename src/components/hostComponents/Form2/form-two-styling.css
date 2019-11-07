@@ -1,0 +1,9 @@
+#form2-main-div{
+    background-image: url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');
+    display: flex;
+    align-items: center;
+}
+
+.form2-button-container{
+    padding-top: 50px;
+}
