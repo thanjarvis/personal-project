@@ -45,8 +45,14 @@
     flex-direction: column;
     align-items: center;
 }
-.race-map-div{
-    height: 40vh;
-    width: 75vw;
-    background-color: rgba(0, 0, 0, 0.384);
+.race-map-container{
+    display: flex;
+    justify-content: center
+}
+
+.race-map-img{
+    width: 85vw;
+    height: auto;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
 }

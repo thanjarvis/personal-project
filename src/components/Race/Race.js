@@ -53,10 +53,12 @@ class Race extends Component{
                         </div>
                     </div>
                 </div>
-                <div className='race-map-div'>
-                    {this.props.userReducer.race[0].map}
+                <div className='race-map-container'>
+                    <img
+                        className='race-map-img'
+                        src={this.props.userReducer.race[0].map}
+                    ></img>
                 </div>
-
                 
             </div>
         )

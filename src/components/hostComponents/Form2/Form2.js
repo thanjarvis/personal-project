@@ -3,13 +3,17 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {sendForm2, editRace, clearState} from '../../../redux/raceReducer'
 import './form-two-styling.css'
-import Dropzone from 'react-dropzone';
+import {v4 as randomString} from 'uuid'
+import axios from 'axios'
 
 class Form2 extends Component{
     constructor(){
         super()
         this.state = {
-            raceMap: ''
+            raceMap: '',
+            url: '',
+            testURL: '',
+            raceMapUrl: ''
             
         }
     }
@@ -21,47 +25,79 @@ class Form2 extends Component{
     }
 
     saveRace = async () => {
-        await this.props.sendForm2(this.state.raceMap)
+        await this.props.sendForm2(this.state.raceMapUrl)
         this.props.history.push('/host/hostRaces')
     }
 
     editRace = async () => {
-        await this.props.editRace(this.state.raceMap)
+        await this.props.editRace(this.state.raceMapUrl)
         this.props.history.push('/host/hostRaces')
+    }
+
+    handleImage = () => {
+        const file = document.getElementById('image-file').files[0]
+        console.log(file)
+        const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`
+        
+        axios.get('/api/signs3',{
+            params:{
+                'file-name': fileName,
+                'file-type': file.type
+            }
+        })
+        .then(res => {
+            console.log('res.data', res.data)
+            const{signedRequest, url} = res.data
+            console.log('signed request', signedRequest)
+            console.log('url', url)
+            this.setState({
+                raceMapUrl: signedRequest 
+            })
+            this.upLoadFile(file, signedRequest, url)
+        })
+        .catch(err => console.log(err))        
+    }
+
+    upLoadFile = (file, signedRequest, url) => {
+        console.log(url)
+        const options = {
+            headers: {
+                'Content-Type': file.type
+            }
+        }
+        this.setState({
+            raceMapUrl: url
+        })
+        axios.put(signedRequest, file, options)
+        .then(res => {
+            console.log('bouble check here', res.data)
+        })
+        .catch(err => console.log(err))
     }
 
     
 
     render(){
+        console.log(this.state.raceMapUrl)
         return(
             <div className='body-div' id='form2-main-div'>
-                {/* <input
+                <input
+                    multiple={false}
+                    accept='image/*'
+                    type='file'
                     className='input'
                     name='raceMap'
+                    id='image-file'
                     value={this.state.raceMap}
                     placeholder='Race Map test'
                     onChange={(e) => this.handleChange(e)}
-                /> */}
-                <Dropzone
-                    // style={{
-                    //     position:'relative',
-                    //     width: 200,
-                    //     height: 200,
-                    //     borderWidth:7,
-                    //     marginTop:100,
-                    //     borderColor: 'rgb(102, 102, 102)',
-                    //     borderStyle: 'dashed',
-                    //     borderRadius: 5,
-                    //     display: 'flex',
-                    //     justifyContent: 'center',
-                    //     alignItems: 'center',
-                    //     fontSize: 28
-                    // }}
-                    // accept='image/*'
-                    // multiple={false}
-                >
-                    {/* <p>drop file or click here</p> */}
-                </Dropzone>
+                />
+
+                <button
+                    className='button'
+                    onClick={() => this.handleImage(this.state.raceMap)}
+                >Upload Photo</button>
+                
                 <div className='form2-button-container'>
                     <Link to='/host/hostRaces'><button
                         className='button'
@@ -71,7 +107,7 @@ class Form2 extends Component{
                     <Link to='/host/hostRace'><button
                         className='button'
                         onClick={this.editRace}
-                    >saveEditedTest</button></Link>
+                    >Save Edited Race</button></Link>
 
                     <Link to='/host/hostRaces'><button
                         className='button'

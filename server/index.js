@@ -39,6 +39,7 @@ app.post('/api/newRace', hostCtrl.makeNewRace)
 app.get('/api/getAllHostRaces/:id', hostCtrl.getAllHostRaces)
 app.delete('/api/deletSpecificRace/:id', hostCtrl.deleteSpecificRace)
 app.put('/api/editRace', hostCtrl.editRace)
+app.get('/api/signs3', hostCtrl.sendRaceRoute)
 
 
 
