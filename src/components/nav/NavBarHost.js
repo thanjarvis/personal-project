@@ -18,6 +18,7 @@ class NavBarHost extends Component{
     changeState = () => {
         this.setState({
             showDropdown: !this.state.showDropdown
+            //alows there to be a dropdown on the mobil responsive mode.
         })
     }
   
@@ -25,10 +26,10 @@ class NavBarHost extends Component{
     
     logout = () => {
         axios.post('/api/logout')
+        //destroys the users session.
     }
 
     render(){
-        // console.log(this.props)
         return(
             <div id='main-container'>
                 <nav>
@@ -53,6 +54,7 @@ class NavBarHost extends Component{
                             onClick={this.logout}
                         >Logout</button></Link>
                     </div>
+                    //checks to see whether it should show the mobile responsive mode. if not it is just a display of null.
 
                 ): null}
                 </nav>
@@ -69,3 +71,4 @@ function mapStateToProps(state){
     }
 }
 export default connect(mapStateToProps)(NavBarHost)
+// takes in the hosts name so that it can display it up in the display bar.

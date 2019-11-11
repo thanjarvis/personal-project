@@ -4,6 +4,10 @@ import {connect} from 'react-redux'
 import {sendForm1, clearState} from '../../../redux/raceReducer'
 import './form1-styling.css'
 
+// there are two paths here, the first is when the user wants to create a new race, the second is when the user wants to edit an existing race. in both cases they navigate to this component, but when it is to edit a new race the inputs are already populated with the existing information, which is pulled from the redux state. in the redux state it is updated and returned to the database
+
+// when they make a new race they enter in all of the info which on the button click is sent to the redux state and then to the database.
+
 class Form1 extends Component{
     constructor(){
         super()
@@ -17,10 +21,12 @@ class Form1 extends Component{
             raceHostPhone: '',
             raceComments: '',
             hostId: '',
-            race: {}       
+            race: {}  
+            //state holds all of the race infor as well as the specific values in each input     
         }
     }
     componentDidMount = () => {
+        //checks if the user is making or editing a race, and then populates the inputs with the desired data if they are editing
 
         if(this.props.raceReducer.raceId !== ''){
             const {raceImg, raceName, raceDate, raceLocation, raceDistance,     raceElevationChange, raceHostPhone, raceComments, hostId} =     this.props.raceReducer
@@ -43,6 +49,7 @@ class Form1 extends Component{
         this.setState({
             [e.target.name]: e.target.value
         })
+        //function to update the values in state, works with each input becaused we used the input names to connect to the state names.
     }
 
     render(){
@@ -112,6 +119,7 @@ class Form1 extends Component{
                         className='button'
                         id='race-button'
                     >Cancel</button></Link>
+                    {/* cancel button just navigates to the host landing page */}
                     <Link to='/host/form2'><button
                         id='race-button'
                         className='button'
@@ -126,6 +134,7 @@ class Form1 extends Component{
                             this.state.raceComments,
                         )}
                     >Step 2</button></Link>
+                    {/* step2 button navigates to form 2 and updates the races values on the redux state in preparation to be sent to the database */}
                 </div>
             </div>
         )
@@ -139,3 +148,4 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps, {sendForm1, clearState})(Form1)
+// here redux is only getting the existing race info if it is that the host want to edit the race. in the case of making a new race redux only recieves the values

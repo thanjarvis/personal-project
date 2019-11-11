@@ -28,7 +28,8 @@ class Dashboard extends Component{
             this.setState({
                 allRaces: res.data
             })
-        })        
+        })
+        //gets all races puts them onto the state where they are then mapped through and displayed dashboard style         
     }
 
     searchRaces = (search) => {
@@ -39,6 +40,7 @@ class Dashboard extends Component{
                 allRaces: res.data
             })
         })
+        //searches for a specific race based on the search input. searches through race comments.
     }
 
     getRace = (id) => {
@@ -47,8 +49,8 @@ class Dashboard extends Component{
             // console.log(res.data)
             this.props.getSpecificRace(res.data)
             this.props.history.push('/race')
-
         })
+        // when the race is clicked on this gets that specific race and puts it up on the redux state so that the user can see all of the race information and then register for the race
     }
 
     render(){ 
@@ -69,6 +71,7 @@ class Dashboard extends Component{
                     >Search</button>
                 </div>
                 <div className='race-container-div'>
+                    {/* maps through the races, and displays them */}
                     {this.state.allRaces.map(e => {
                         return(
                             <div className='race-div' key={e.race_id}>
@@ -99,5 +102,5 @@ function mapStateToProps(state){
         userReducer: state.userReducer
     }
 }
-
+// sends the specific race up to the redux state
 export default connect(mapStateToProps, {getSpecificRace})(Dashboard)

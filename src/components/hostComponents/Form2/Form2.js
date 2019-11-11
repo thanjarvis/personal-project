@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {sendForm2, editRace, clearState} from '../../../redux/raceReducer'
 import './form-two-styling.css'
 import {v4 as randomString} from 'uuid'
+//for the implementation of  AW s3 storage, which stores the images of the race course.
 import axios from 'axios'
 
 class Form2 extends Component{
@@ -27,18 +28,22 @@ class Form2 extends Component{
     saveRace = async () => {
         await this.props.sendForm2(this.state.raceMapUrl)
         this.props.history.push('/host/hostRaces')
+        // function contained in redux that takes the info from this component and the previous form and then sends it via axios to the backend and database
     }
 
     editRace = async () => {
         await this.props.editRace(this.state.raceMapUrl)
         this.props.history.push('/host/hostRaces')
+        // redux function that edits the race using the changed values in redux. called from here passing in the data from this form as well
     }
 
     handleImage = () => {
         const file = document.getElementById('image-file').files[0]
-        console.log(file)
+
+        //makes it so that if we upload the same image twice they wont have conflicting names
         const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`
         
+        //here it makes the file and then calls upLoadFile which sends the file to s3 storage.
         axios.get('/api/signs3',{
             params:{
                 'file-name': fileName,
@@ -46,13 +51,11 @@ class Form2 extends Component{
             }
         })
         .then(res => {
-            console.log('res.data', res.data)
             const{signedRequest, url} = res.data
-            console.log('signed request', signedRequest)
-            console.log('url', url)
             this.setState({
                 raceMapUrl: signedRequest 
             })
+            // makes the value of raceMapUrl on state to be the URL of the image in the s3 storage. through this url is how it is accessed later on the runner side.
             this.upLoadFile(file, signedRequest, url)
         })
         .catch(err => console.log(err))        
@@ -72,6 +75,7 @@ class Form2 extends Component{
         .then(res => {
             console.log('bouble check here', res.data)
         })
+        //this put request goes and edits the file giving it an acutal value
         .catch(err => console.log(err))
     }
 
@@ -102,15 +106,18 @@ class Form2 extends Component{
                     <Link to='/host/hostRaces'><button
                         className='button'
                         onClick={this.saveRace}
+                        //calls the redux function to save the race and send everything to the back end
                     >Save</button></Link>
 
                     <Link to='/host/hostRace'><button
                         className='button'
                         onClick={this.editRace}
+                        //calls the redux function to save edited the race and send everything to the back end
                     >Save Edited Race</button></Link>
 
                     <Link to='/host/hostRaces'><button
                         className='button'
+                        //just a simple redirect
                     >Cancel</button></Link>
                 </div>
             </div>
@@ -125,3 +132,4 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps,{sendForm2, editRace, clearState})(Form2)
+// the redux funcitons to save the race or to make a new race.

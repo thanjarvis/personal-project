@@ -22,6 +22,7 @@ class UserRaces extends Component{
             userRaces: res.data
         }))
         .catch(err => err)
+        //gets all the races that the user has registered for.
     }
 
     getRace = (id) => {
@@ -32,6 +33,7 @@ class UserRaces extends Component{
             this.props.history.push('/race')
 
         })
+        // gets a specific race and sends its details to the redux state, then redirects the user to the race page where they can see all of the details
     }
 
     render(){

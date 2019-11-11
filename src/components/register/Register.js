@@ -26,6 +26,8 @@ class Register extends Component{
             this.props.history.push('/dashboard')
         })
         .catch(err => console.log(err))
+        //  on the back end it verifies that the username is not already taken then it registers the user and sends them to the dashboard page
+        // hashes the passwords for storage    
     }
 
     registerHost = () => {
@@ -35,6 +37,8 @@ class Register extends Component{
             this.props.history.push('/host/hostRaces')
         })
         .catch(err => console.log(err))
+        //  on the back end it verifies that the username is not already taken then it registers the user and sends them to the dashboard page
+        // hashes the passwords for storage
     }
 
     render(){

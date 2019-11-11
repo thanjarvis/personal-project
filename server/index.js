@@ -43,7 +43,7 @@ app.get('/api/signs3', hostCtrl.sendRaceRoute)
 
 
 
-//shared enpoints
+//shared endpoints
 app.post('/logout', userCtrl.logout)
 
 const port = SERVER_PORT

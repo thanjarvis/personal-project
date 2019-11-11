@@ -23,14 +23,22 @@ class Race extends Component{
         .catch(err => {
             console.log(err)
         })
+        // verifies if the user is already registered for the race and then allows sthem to continue to pay if they are not yet registered
+    }
+
+    contactDirector = (num) => {
+        alert(`Director's phone number: ${num}`)
+        // could be replaced with and automatic text message or email
     }
 
     render(){
-        // console.log(this.props.userReducer.race[0].race_id)
         return(
+            // displays race info and the option to register or contact the race director
             <div className='race-main-div'>
                 <div className='race-buttons-div'>
-                        <button className='button'>Contact Director</button>
+                        <button className='button'
+                            onClick={() => this.contactDirector(this.props.userReducer.race[0].host_phone)}
+                        >Contact Director</button>
                         <button
                             className='button'
                             onClick={this.controlRegister}
@@ -70,5 +78,5 @@ function mapStateToProps(state){
         userReducer: state.userReducer
     }
 }
-
+//pulls all of the information for that specific from the redux state and then displays it for the user to view and then decide of they want to register for the race.
 export default connect(mapStateToProps)(Race)

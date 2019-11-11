@@ -16,11 +16,13 @@ class NavBarUser extends Component{
     changeState = () => {
         this.setState({
             showDropdown: !this.state.showDropdown
+            //allows mobule responsivenes
         })
     }
 
     logout = () => {
         axios.post('/api/logout')
+        // destorys the users session
     }
 
     render(){
@@ -48,9 +50,8 @@ class NavBarUser extends Component{
                             className='button'
                             onClick={this.logout}
                         >Logout</button></Link>
-
                     </div>
-
+                    // when it is a certain size it shows this dropdown instead of the traditional horizontal navigation bar
                 ): null}
             </div>
         )
@@ -63,5 +64,5 @@ function mapStateToProps(state){
         username: username
     }
 }
-
+// pulls the users username from the redux state so that it can display it in the nav bar
 export default connect(mapStateToProps)(NavBarUser)
