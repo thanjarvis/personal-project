@@ -1,4 +1,5 @@
 require('dotenv').config({path: __dirname + "/../.env"})
+const path = require('path')
 const express = require('express')
 const userCtrl = require('./controllers/ctrlUser')
 const hostCtrl = require('./controllers/ctrlHost')
@@ -8,6 +9,8 @@ const massive = require('massive')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 
 app.use(express.json())
+
+app.use( express.static( `${__dirname}/../build` ) );
 
 
 app.use(session({
@@ -45,6 +48,10 @@ app.get('/api/signs3', hostCtrl.sendRaceRoute)
 
 //shared endpoints
 app.post('/logout', userCtrl.logout)
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 const port = SERVER_PORT
 app.listen(port, () => console.log(`server is running on port ${port}`))
