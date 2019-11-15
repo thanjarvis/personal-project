@@ -10,6 +10,7 @@ const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 
 app.use(express.json())
 
+//used to host
 app.use( express.static( `${__dirname}/../build` ) );
 
 
@@ -49,6 +50,7 @@ app.get('/api/signs3', hostCtrl.sendRaceRoute)
 //shared endpoints
 app.post('/logout', userCtrl.logout)
 
+//used for hosting
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build/index.html'));
 });

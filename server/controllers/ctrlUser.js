@@ -108,6 +108,9 @@ module.exports = {
         const {raceId, userId} = req.body
         let foundRegistration = await db.find_race_registration(userId, raceId)
         res.status(200).send(foundRegistration)
+    },
+    sum: (num, num2) => {
+        return num + num2
     }
     
     

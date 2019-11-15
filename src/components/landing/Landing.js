@@ -55,6 +55,8 @@ class Landing extends Component{
     render(){
         return(
             <div id='main-div'>
+                <h1 className='title1'>Starting Line</h1>
+                <h3 className='title2'>Where the race begins</h3>
                 <div className='input-container'>
                     <input
                         className='input'

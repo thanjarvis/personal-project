@@ -11,6 +11,8 @@
     background-size: cover;
     padding-top: 50px;
     box-sizing: border-box;
+    background-position: center bottom;
+
 }
 .race-container-div{
     display: flex;
@@ -59,8 +61,7 @@
 
 @media(min-width: 900px){
     .body-div{
-        /* background-position: bottom; */
-        background-position-y: -150vh
+        background-position: center bottom;
     }
 
     .race-div{

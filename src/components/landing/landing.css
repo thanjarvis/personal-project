@@ -24,6 +24,16 @@
     font-family: 'fugaz one';
 }
 
+.title1{
+    font-family: 'fugaz one';
+    font-size: 7vh;
+    margin-bottom: -10px
+}
+
+.title2{
+    font-family: 'fugaz one'
+}
+
 @media(max-width: 900px){
     #main-div{
         padding-top: 20vh;

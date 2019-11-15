@@ -22,7 +22,7 @@ nav{
 
 }
 
-.button{
+/* .button{
     border: none;
     color: white;
     background-color: black;
@@ -34,7 +34,7 @@ nav{
 }
 .button:hover{
     box-shadow: 3px 3px 5px 0px white
-}
+} */
 .text{
     font-family: 'fugaz one';
     font-size: 4vh;
